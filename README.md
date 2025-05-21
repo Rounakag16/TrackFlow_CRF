@@ -10,7 +10,7 @@
 1. Clone this repo
 2. Create `.env` with your PostgreSQL `DATABASE_URL`
 3. Run `npm install`
-4. Initialize DB (optional): `node backend/setupDb.js`
+4. Initialize DB : `node backend/setupDb.js`
 5. Start server: `node backend/server.js`
 6. Open `frontend/index.html` in your browser
 
