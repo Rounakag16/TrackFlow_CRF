@@ -2,14 +2,70 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>TrackFlow CRM</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <title>TrackFlow CRM - Leads</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>Welcome to TrackFlow CRM</h1>
-    <p>This is a placeholder frontend. Backend is ready!</p>
+    <header>
+        <h1>TrackFlow CRM</h1>
+        <div class="controls">
+            <button onclick="toggleForm()">Add Lead</button>
+            <button onclick="toggleView('list')">List View</button>
+            <button onclick="toggleView('kanban')">Kanban View</button>
+        </div>
+    </header>
+
+    <!-- Add Form -->
+    <section id="add-lead" class="card hidden">
+        <h2>Add New Lead</h2>
+        <form id="leadForm">
+            <input type="text" name="name" placeholder="Name" required />
+            <input type="email" name="contact" placeholder="Contact (Email)" required />
+            <input type="text" name="company" placeholder="Company" />
+            <input type="text" name="product_interest" placeholder="Product Interest" />
+            <select name="stage" required>
+                <option value="">Select Stage</option>
+                <option>New</option>
+                <option>Contacted</option>
+                <option>Qualified</option>
+                <option>Proposal</option>
+                <option>Won</option>
+                <option>Lost</option>
+            </select>
+            <input type="date" name="follow_up_date" />
+            <textarea name="notes" placeholder="Notes"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="formMessage"></div>
+    </section>
+
+    <!-- List View -->
+    <section id="list-view" class="card hidden">
+        <h2>Lead List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Company</th>
+                    <th>Stage</th>
+                    <th>Follow-up</th>
+                    <th>Created</th>
+                </tr>
+            </thead>
+            <tbody id="leadTableBody"></tbody>
+        </table>
+    </section>
+
+    <!-- Kanban View -->
+    <section id="kanban-view" class="card hidden">
+        <h2>Lead Kanban Board</h2>
+        <div class="kanban-board" id="kanbanBoard">
+        </div>
+    </section>
+
     <script src="script.js"></script>
 </body>
 
