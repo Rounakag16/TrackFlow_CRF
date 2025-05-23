@@ -11,7 +11,13 @@ exports.createLead = async (req, res) => {
         );
         res.status(201).json(result.rows[0]);
     } catch (err) {
-        res.status(500).json({ error: 'Failed to create lead' });
+        if (err.code === '23505') {
+            res.status(400).json({ error: 'Lead with this contact already exists.' });
+        } else if (err.code === '23514') {
+            res.status(400).json({ error: 'Invalid stage value.' });
+        } else {
+            res.status(500).json({ error: 'Failed to create lead' });
+        }
     }
 };
 
@@ -27,11 +33,15 @@ exports.updateLeadStage = async (req, res) => {
         if (result.rows.length === 0) return res.status(404).json({ error: 'Lead not found' });
         res.json(result.rows[0]);
     } catch (err) {
-        res.status(500).json({ error: 'Failed to update lead stage' });
+        if (err.code === '23514') {
+            res.status(400).json({ error: 'Invalid stage value.' });
+        } else {
+            res.status(500).json({ error: 'Failed to update lead stage' });
+        }
     }
 };
 
-// GET
+// SEARCH (GET)
 exports.getLeads = async (req, res) => {
     try {
         const { stage, follow_up_date } = req.query;
@@ -47,6 +57,8 @@ exports.getLeads = async (req, res) => {
             params.push(follow_up_date);
             query += ` AND follow_up_date = $${params.length}`;
         }
+
+        query += ' ORDER BY created_at DESC';
 
         const result = await pool.query(query, params);
         res.json(result.rows);
