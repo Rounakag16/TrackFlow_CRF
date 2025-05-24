@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS leads (
 CREATE TABLE IF NOT EXISTS orders (
   id SERIAL PRIMARY KEY,
   lead_id INTEGER NOT NULL REFERENCES leads(id) ON DELETE CASCADE,
-  status VARCHAR(50) CHECK (status IN ('Pending', 'Shipped', 'Delivered', 'Cancelled')),
+  status VARCHAR(50) CHECK (status IN ('Order Received', 'In Development', 'Ready to Dispatch', 'Dispatched')),
   dispatch_date DATE,
   courier TEXT,
   tracking_info TEXT,
