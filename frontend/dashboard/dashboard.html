@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Dashboard - TrackFlow CRM</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <h1>📊 Dashboard</h1>
+    <div class="controls">
+        <a href="index.html">← Back</a>
+    </div>
+
+    <section class="card">
+        <h2>Metrics</h2>
+        <div id="metrics"></div>
+    </section>
+
+    <section class="card">
+        <h2>Upcoming Follow-ups (Next 7 Days)</h2>
+        <ul id="upcoming"></ul>
+    </section>
+
+    <section class="card">
+        <h2 style="color: red;">⚠️ Overdue Follow-ups</h2>
+        <ul id="overdue"></ul>
+    </section>
+    <section class="card">
+        <h2>📅 Follow-Up Calendar</h2>
+        <div id="calendar"></div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

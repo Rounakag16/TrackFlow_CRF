@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>TrackFlow - Orders</title>
+    <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+    <h1>Order Management</h1>
+
+    <div class="controls">
+        <button onclick="toggleOrderForm()">➕ Add/Update Order</button>
+        <button onclick="loadOrdersList()">📋 List View</button>
+        <button onclick="loadOrdersKanban()">🗂️ Kanban View</button>
+        <select id="statusFilter" onchange="filterOrdersByStatus(this.value)">
+            <option value="">All</option>
+            <option>Order Received</option>
+            <option>In Development</option>
+            <option>Ready to Dispatch</option>
+            <option>Dispatched</option>
+        </select>
+        <a href="../index.html">← Back</a>
+    </div>
+
+    <section id="order-form-section" class="card hidden">
+        <h2>Create or Update Order</h2>
+        <form id="orderForm">
+            <select name="lead_id" id="leadDropdown" required></select>
+            <select name="status" required>
+                <option>Order Received</option>
+                <option>In Development</option>
+                <option>Ready to Dispatch</option>
+                <option>Dispatched</option>
+            </select>
+            <input type="date" name="dispatch_date" />
+            <input type="text" name="courier" placeholder="Courier Name" />
+            <input type="text" name="tracking_info" placeholder="Tracking ID" />
+            <button type="submit">Save Order</button>
+        </form>
+        <div id="orderFormMessage"></div>
+    </section>
+
+    <section id="order-list" class="card hidden">
+        <h2>Orders List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Lead</th>
+                    <th>Status</th>
+                    <th>Dispatch Date</th>
+                    <th>Courier</th>
+                    <th>Tracking</th>
+                </tr>
+            </thead>
+            <tbody id="orderTableBody"></tbody>
+        </table>
+    </section>
+
+    <section id="order-kanban" class="card hidden">
+        <h2>Order Kanban</h2>
+        <div id="orderKanbanBoard" class="kanban-board"></div>
+    </section>
+
+    <script src="orders.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Edit Order</title>
+    <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+    <h2>Edit Order</h2>
+    <form id="orderEditForm">
+        <label>Lead ID <input type="number" name="lead_id" required /></label>
+        <label>Status
+            <select name="status" required>
+                <option>Order Received</option>
+                <option>In Development</option>
+                <option>Ready to Dispatch</option>
+                <option>Dispatched</option>
+            </select>
+        </label>
+        <label>Dispatch Date <input type="date" name="dispatch_date" /></label>
+        <label>Courier <input type="text" name="courier" /></label>
+        <label>Tracking ID <input type="text" name="tracking_info" /></label>
+        <button type="submit">Save Changes</button>
+        <a href="../orders/orders.html">← Back</a>
+    </form>
+    <script src="edit-order.js"></script>
+</body>
+
+</html>

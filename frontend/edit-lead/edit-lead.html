@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Edit Lead</title>
+    <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+    <h2>Edit Lead</h2>
+    <form id="leadEditForm">
+        <input type="text" name="name" required />
+        <input type="email" name="contact" required />
+        <input type="text" name="company" />
+        <input type="text" name="product_interest" />
+        <select name="stage" required>
+            <option>New</option>
+            <option>Contacted</option>
+            <option>Qualified</option>
+            <option>Proposal</option>
+            <option>Won</option>
+            <option>Lost</option>
+        </select>
+        <input type="date" name="follow_up_date" />
+        <textarea name="notes"></textarea>
+        <button type="submit">Save Changes</button>
+        <a href="../leads/leads.html">← Back</a>
+    </form>
+    <script src="edit-lead.js"></script>
+</body>
+
+</html>
