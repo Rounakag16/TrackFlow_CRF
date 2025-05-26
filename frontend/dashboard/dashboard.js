@@ -34,6 +34,19 @@ async function loadDashboard() {
     <p><strong>Orders by Status:</strong></p>
     <ul>${data.ordersByStatus.map(s => `<li>${s.status}: ${s.count}</li>`).join('')}</ul>
   `;
+            // Upcoming Follow-ups
+            const upcomingList = document.getElementById('upcoming');
+            upcomingList.innerHTML = data.upcomingFollowUps.length
+                ? data.upcomingFollowUps.map(l =>
+                    `<li>${l.name} (${l.stage}) - ${new Date(l.follow_up_date).toLocaleDateString()}</li>`).join('')
+                : '<li>✅ No follow-ups due this week</li>';
+
+            // Overdue Follow-ups
+            const overdueList = document.getElementById('overdue');
+            overdueList.innerHTML = data.overdueFollowUps.length
+                ? data.overdueFollowUps.map(l =>
+                    `<li style="color:red;">${l.name} (${l.stage}) - ${new Date(l.follow_up_date).toLocaleDateString()}</li>`).join('')
+                : '<li>✅ No overdue follow-ups</li>';
 
             renderFollowUpCalendar([
                 ...data.upcomingFollowUps,

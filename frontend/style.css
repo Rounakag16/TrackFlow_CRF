@@ -116,3 +116,42 @@ ul {
     list-style: disc;
     margin-left: 2rem;
 }
+
+/* Landing Page */
+.landing-container {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.landing-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.landing-buttons a {
+    text-decoration: none;
+    background: #007bff;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    transition: background 0.3s ease;
+}
+
+.landing-buttons a:hover {
+    background: #0056b3;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+    form {
+        grid-template-columns: 1fr;
+    }
+}
