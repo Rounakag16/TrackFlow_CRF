@@ -1,9 +1,26 @@
 const ORDER_API = 'http://localhost:3000/api/orders';
 const LEAD_API = 'http://localhost:3000/api/leads';
 
-function toggleOrderForm() {
+function hideAllSections() {
+    document.getElementById('order-form-section').classList.add('hidden');
+    document.getElementById('list-view').classList.add('hidden');
+    document.getElementById('order-kanban').classList.add('hidden');
+}
+function toggleForm() {
+    hideAllSections();
     document.getElementById('order-form-section').classList.toggle('hidden');
     loadLeadDropdown();
+}
+
+function toggleView(view) {
+    hideAllSections();
+    if (view === 'list') {
+        document.getElementById('list-view').classList.remove('hidden');
+        loadOrdersList();
+    } else if (view === 'kanban') {
+        document.getElementById('order-kanban').classList.remove('hidden');
+        loadOrdersKanban();
+    }
 }
 
 async function loadLeadDropdown() {
@@ -40,9 +57,6 @@ document.getElementById('orderForm').addEventListener('submit', async (e) => {
 });
 
 async function loadOrdersList(status = '') {
-    document.getElementById('order-list').classList.remove('hidden');
-    document.getElementById('order-kanban').classList.add('hidden');
-
     const url = status ? `${ORDER_API}?status=${encodeURIComponent(status)}` : ORDER_API;
     const res = await fetch(url);
     const orders = await res.json();
@@ -52,10 +66,14 @@ async function loadOrdersList(status = '') {
     orders.forEach(o => {
         const row = document.createElement('tr');
         row.innerHTML = `
-      <td>${o.id}</td><td>${o.lead_id}</td><td>${o.status}</td>
-      <td>${o.dispatch_date || '-'}</td><td>${o.courier || '-'}</td><td>${o.tracking_info || '-'}</td>
-      <td><button onclick="editOrder(${o.id})">✏️</button></td>
-    `;
+        <td>${o.id}</td>
+        <td>${o.lead_id}</td>
+        <td>${o.status}</td>
+        <td>${new Date(o.dispatch_date).toLocaleDateString() || '-'}</td>
+        <td>${o.courier || '-'}</td>
+        <td>${o.tracking_info || '-'}</td>
+        <td><button onclick="editOrder(${o.id})"><i class="fa-solid fa-pen-to-square"></i></button></td>
+        `;
         tbody.appendChild(row);
     });
 }
@@ -65,9 +83,6 @@ function filterOrdersByStatus(status) {
 }
 
 async function loadOrdersKanban() {
-    document.getElementById('order-list').classList.add('hidden');
-    document.getElementById('order-kanban').classList.remove('hidden');
-
     const res = await fetch(ORDER_API);
     const orders = await res.json();
     const board = document.getElementById('orderKanbanBoard');
@@ -82,7 +97,7 @@ async function loadOrdersKanban() {
             const card = document.createElement('div');
             card.className = 'kanban-card';
             card.innerHTML = `
-        <strong>Order #${o.id}</strong><br/>Lead: ${o.lead_id}<br/>${o.tracking_info || ''}`;
+            <strong>Order #${o.id}</strong><br/>Lead: ${o.lead_id}<br/>${o.tracking_info || ''}`;
             column.appendChild(card);
         });
         board.appendChild(column);

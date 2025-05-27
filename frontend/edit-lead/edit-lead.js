@@ -6,13 +6,12 @@ let originalLead = {};
 
 async function loadLead() {
     const res = await fetch(`${API}/${leadId}`);
-    originalLead = await res.json(); // store original values
+    originalLead = await res.json();
     const form = document.getElementById('leadEditForm');
 
     for (const key in originalLead) {
         if (form[key]) {
             if (key === 'follow_up_date' && originalLead[key]) {
-                // Format to YYYY-MM-DD
                 const date = new Date(originalLead[key]);
                 form[key].value = date.toISOString().split('T')[0];
             } else {
@@ -33,8 +32,6 @@ document.getElementById('leadEditForm').addEventListener('submit', async (e) => 
         const name = input.name;
         const newValue = input.value.trim();
         const originalValue = (originalLead[name] || '').toString().trim();
-
-        // If value has changed, include it in the update
         if (newValue !== originalValue) {
             updatedData[name] = newValue;
         }
@@ -52,10 +49,14 @@ document.getElementById('leadEditForm').addEventListener('submit', async (e) => 
     });
 
     if (res.ok) {
-        alert('Lead updated!');
-        window.location.href = '../leads/leads.html';
+        document.getElementById('formMessage').style.color = 'green';
+        document.getElementById('formMessage').textContent = 'Lead edited successfully!';
+        setTimeout(() => {
+            window.location.href = '../leads/leads.html';
+        }, 1000);
     } else {
-        alert('Failed to update lead.');
+        document.getElementById('formMessage').style.color = 'red';
+        document.getElementById('formMessage').textContent = result.error || 'Error occurred.';
     }
 });
 

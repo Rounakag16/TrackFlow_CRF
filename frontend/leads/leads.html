@@ -18,7 +18,8 @@
 <body>
     <header>
         <nav class="navbar">
-            <h1 class="logo"><i class="fa-brands fa-yelp"></i>&nbsp;&nbsp;&nbsp;TrackFlow CRM</h1>
+            <h1 class="logo"><i class="fa-brands fa-yelp"></i>&nbsp;&nbsp;&nbsp;<a href="../index.html" class="page"
+                    style="text-decoration: none;">TrackFlow CRM</a></h1>
             <div class="landing-buttons">
                 <a href="../dashboard/dashboard.html" class="page">Dashboard</a>
                 <a href="leads.html" class="page">Lead Management</a>
@@ -77,38 +78,42 @@
 
 
     <!-- List View -->
-    <section id="list-view" class="card hidden">
-        <h2>Lead List</h2>
-        <select id="leadStageFilter" onchange="filterLeadsByStage(this.value)">
-            <option value="">All Stages</option>
-            <option>New</option>
-            <option>Contacted</option>
-            <option>Qualified</option>
-            <option>Proposal</option>
-            <option>Won</option>
-            <option>Lost</option>
-        </select>
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Contact</th>
-                    <th>Company</th>
-                    <th>Stage</th>
-                    <th>Follow-up</th>
-                    <th>Created</th>
-                </tr>
-            </thead>
-            <tbody id="leadTableBody"></tbody>
-        </table>
-    </section>
+    <div class="center-container">
+        <section id="list-view" class="card hidden">
+            <h2>Lead List</h2>
+            <select id="leadStageFilter" onchange="filterLeadsByStage(this.value)">
+                <option value="">All Stages</option>
+                <option>New</option>
+                <option>Contacted</option>
+                <option>Qualified</option>
+                <option>Proposal</option>
+                <option>Won</option>
+                <option>Lost</option>
+            </select>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>Company</th>
+                        <th>Stage</th>
+                        <th>Follow-up</th>
+                        <th>Created</th>
+                    </tr>
+                </thead>
+                <tbody id="leadTableBody"></tbody>
+            </table>
+        </section>
+    </div>
 
     <!-- Kanban View -->
-    <section id="kanban-view" class="card hidden">
-        <h2>Lead Kanban Board</h2>
-        <div class="kanban-board" id="kanbanBoard">
-        </div>
-    </section>
+    <div class="center-container">
+        <section id="kanban-view" class="card hidden">
+            <h2>Lead Kanban Board</h2>
+            <div class="kanban-board" id="kanbanBoard">
+            </div>
+        </section>
+    </div>
 
     <script src="leads.js"></script>
 </body>

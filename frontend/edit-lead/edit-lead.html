@@ -16,25 +16,54 @@
 </head>
 
 <body>
-    <h2>Edit Lead</h2>
-    <form id="leadEditForm">
-        <input type="text" name="name" required />
-        <input type="email" name="contact" required />
-        <input type="text" name="company" />
-        <input type="text" name="product_interest" />
-        <select name="stage" required>
-            <option>New</option>
-            <option>Contacted</option>
-            <option>Qualified</option>
-            <option>Proposal</option>
-            <option>Won</option>
-            <option>Lost</option>
-        </select>
-        <input type="date" name="follow_up_date" />
-        <textarea name="notes"></textarea>
-        <button type="submit">Save Changes</button>
-        <a href="../leads/leads.html">← Back</a>
-    </form>
+    <nav class="navbar">
+        <h1 class="logo"><i class="fa-brands fa-yelp"></i>&nbsp;&nbsp;&nbsp;<a href="../index.html" class="page"
+                style="text-decoration: none;">TrackFlow CRM</a></h1>
+        <div class="landing-buttons">
+            <a href="../dashboard/dashboard.html" class="page">Dashboard</a>
+            <a href="../leads/leads.html" class="page">Lead Management</a>
+            <a href="../orders/orders.html" class="page">Order Management</a>
+        </div>
+    </nav>
+
+    <div class="add">
+        <section id="add-lead" class="card">
+            <div class="lhead">
+                <h2>Edit Lead</h2>
+            </div>
+            <form id="leadEditForm">
+                <table class="leadTable">
+                    <tr>
+                        <td><input type="text" name="name" required /></td>
+                        <td><input type="email" name="contact" required /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="company" /></td>
+                        <td><input type="text" name="product_interest" /></td>
+                    <tr>
+                        <td>
+                            <select name="stage" required>
+                                <option>New</option>
+                                <option>Contacted</option>
+                                <option>Qualified</option>
+                                <option>Proposal</option>
+                                <option>Won</option>
+                                <option>Lost</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="date" name="follow_up_date" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><textarea name="notes"></textarea></td>
+                    </tr>
+                </table>
+                <button type="submit">Submit</button>
+            </form>
+            <div id="formMessage"></div>
+        </section>
+    </div>
     <script src="edit-lead.js"></script>
 </body>
 

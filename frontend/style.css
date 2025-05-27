@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     padding: 0%;
     margin: 0%;
@@ -84,6 +88,7 @@ button:hover {
     flex-wrap: wrap;
     gap: 1rem;
     justify-content: space-between;
+    margin-bottom: 0.5rem;
 }
 
 .leadTable td {
@@ -116,25 +121,13 @@ textarea {
     resize: vertical;
 }
 
-/* 
-form textarea {
-    grid-column: span 2;
-    resize: vertical;
-}
 
-form button {
-    grid-column: span 2;
-    background: #28a745;
-}
-
-form button:hover {
-    background: #218838;
-} */
-
-#leadStageFilter {
+/* List View */
+#leadStageFilter,
+#statusFilter {
     padding: 10px 20px;
     background: #CBB9A4;
-    color: #F4F1EA;
+    color: #000000;
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -142,19 +135,16 @@ form button:hover {
     transition: 0.3s ease;
 }
 
-
-
-.hidden {
-    display: none;
-}
-
-
-table {
+#list-view table,
+#order-view table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
+    text-align: center;
+    vertical-align: middle;
 }
 
+/* Kanban View */
 .kanban-board {
     display: flex;
     overflow-x: auto;
@@ -164,7 +154,7 @@ table {
 .kanban-column {
     flex: 1;
     min-width: 180px;
-    background: #e9ecef;
+    background: #faf9f6;
     padding: 1rem;
     border-radius: 8px;
 }
@@ -174,7 +164,7 @@ table {
 }
 
 .kanban-card {
-    background: white;
+    background: #f4f1ea;
     border-radius: 6px;
     padding: 0.5rem;
     margin: 0.5rem 0;
@@ -188,50 +178,157 @@ table {
     text-align: center;
 }
 
-
-ul {
-    list-style: disc;
-    margin-left: 2rem;
-}
-
-
-
-/*
-Landing Page
-.landing-container {
-    max-width: 600px;
-    margin: auto;
-    text-align: center;
-    padding: 2rem;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.landing-buttons {
+/* Orders */
+/* List */
+.orderTable {
+    width: 100%;
     display: flex;
     flex-direction: column;
+    row-gap: 0.5rem;
+}
+
+.orderTable tr {
+    display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
-    margin-top: 2rem;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
 }
 
-.landing-buttons a {
+.orderTable td {
+    flex: 1;
+    min-width: 250px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Main Page */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
     text-decoration: none;
-    background: #007bff;
-    color: white;
-    padding: 12px;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background-color: #A48D78;
+    color: #F4F1EA;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+.btn-accent {
+    background-color: #5F5348;
+    color: #F4F1EA;
+}
+
+.btn-accent:hover {
+    opacity: 0.9;
+}
+
+.hero-section {
+    background: url('hero-bg.jpg') center/cover no-repeat;
+    color: #333;
+    text-align: center;
+    padding: 6rem 1rem;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero-section p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+section {
+    padding: 4rem 0;
+    background-color: #E6DAC8;
+}
+
+section:nth-of-type(even) {
+    background-color: #faf9f6;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    background: #F4F1EA;
     border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.feature-card h3 {
+    margin-bottom: 1rem;
+}
+
+.workflow-steps {
+    list-style: none;
+    counter-reset: step;
+    max-width: 600px;
+    margin: auto;
+    padding: 0;
+}
+
+.workflow-steps li {
+    counter-increment: step;
+    margin-bottom: 1.5rem;
     font-size: 1.1rem;
-    transition: background 0.3s ease;
 }
 
-.landing-buttons a:hover {
-    background: #0056b3;
+.workflow-steps li::before {
+    content: counter(step) '.';
+    font-weight: bold;
+    margin-right: 0.5rem;
+    color: #A48D78;
 }
 
-Responsive tweaks
-@media (max-width: 600px) {
-    form {
-        grid-template-columns: 1fr;
-    }
-} */
+.tech-list {
+    list-style: none;
+    max-width: 600px;
+    margin: auto;
+    padding: 0;
+}
+
+.tech-list li {
+    padding: 0.5rem 0;
+    font-size: 1.05rem;
+    text-align: center;
+}
+
+.footer-section {
+    background: #333;
+    color: #ddd;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.footer-section a {
+    color: #F4F1EA;
+    text-decoration: underline;
+}

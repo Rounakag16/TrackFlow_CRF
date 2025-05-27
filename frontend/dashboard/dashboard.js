@@ -39,14 +39,14 @@ async function loadDashboard() {
             upcomingList.innerHTML = data.upcomingFollowUps.length
                 ? data.upcomingFollowUps.map(l =>
                     `<li>${l.name} (${l.stage}) - ${new Date(l.follow_up_date).toLocaleDateString()}</li>`).join('')
-                : '<li>✅ No follow-ups due this week</li>';
+                : '<li>No follow-ups due this week</li>';
 
             // Overdue Follow-ups
             const overdueList = document.getElementById('overdue');
             overdueList.innerHTML = data.overdueFollowUps.length
                 ? data.overdueFollowUps.map(l =>
                     `<li style="color:red;">${l.name} (${l.stage}) - ${new Date(l.follow_up_date).toLocaleDateString()}</li>`).join('')
-                : '<li>✅ No overdue follow-ups</li>';
+                : '<li>No overdue follow-ups</li>';
 
             renderFollowUpCalendar([
                 ...data.upcomingFollowUps,

@@ -3,66 +3,110 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>TrackFlow - Orders</title>
+    <title>TrackFlow CRM - Orders</title>
     <link rel="stylesheet" href="../style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-    <h1>Order Management</h1>
+    <header>
+        <nav class="navbar">
+            <h1 class="logo"><i class="fa-brands fa-yelp"></i>&nbsp;&nbsp;&nbsp;<a href="../index.html" class="page"
+                    style="text-decoration: none;">TrackFlow CRM</a></h1>
+            <div class="landing-buttons">
+                <a href="../dashboard/dashboard.html" class="page">Dashboard</a>
+                <a href="../leads/leads.html" class="page">Lead Management</a>
+                <a href="orders.html" class="page">Order Management</a>
+            </div>
+        </nav>
+        <div class="controls">
+            <button onclick="toggleForm()">Add Order</button>
+            <button onclick="toggleView('list')">List View</button>
+            <button onclick="toggleView('kanban')">Kanban View</button>
+        </div>
+    </header>
 
-    <div class="controls">
-        <button onclick="toggleOrderForm()">➕ Add/Update Order</button>
-        <button onclick="loadOrdersList()">📋 List View</button>
-        <button onclick="loadOrdersKanban()">🗂️ Kanban View</button>
-        <select id="statusFilter" onchange="filterOrdersByStatus(this.value)">
-            <option value="">All</option>
-            <option>Order Received</option>
-            <option>In Development</option>
-            <option>Ready to Dispatch</option>
-            <option>Dispatched</option>
-        </select>
-        <a href="../index.html">← Back</a>
+    <!-- Add Form -->
+    <div class="center-container">
+        <section id="order-form-section" class="card hidden">
+            <div class="lhead">
+                <h2>Add New Order</h2>
+            </div>
+            <form id="orderForm">
+                <table class="leadTable">
+                    <tr>
+                        <td colspan="2">
+                            <select name="lead_id" id="leadDropdown" required style="width: 100%;">
+                                <option value="">Select Lead</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <select name="status" required style="width: 100%;">
+                                <option value="">Select Status</option>
+                                <option>Order Received</option>
+                                <option>In Development</option>
+                                <option>Ready to Dispatch</option>
+                                <option>Dispatched</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="date" name="dispatch_date" /></td>
+                        <td><input type="text" name="courier" placeholder="Courier Name" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="text" name="tracking_info" placeholder="Tracking ID" /></td>
+                    </tr>
+                </table>
+                <button type="submit">Save Order</button>
+            </form>
+            <div id="orderFormMessage"></div>
+        </section>
     </div>
 
-    <section id="order-form-section" class="card hidden">
-        <h2>Create or Update Order</h2>
-        <form id="orderForm">
-            <select name="lead_id" id="leadDropdown" required></select>
-            <select name="status" required>
+    <!-- List View -->
+    <div class="center-container">
+        <section id="list-view" class="card hidden">
+            <h2>Orders List</h2>
+            <select id="statusFilter" onchange="filterOrdersByStatus(this.value)">
+                <option value="">All</option>
                 <option>Order Received</option>
                 <option>In Development</option>
                 <option>Ready to Dispatch</option>
                 <option>Dispatched</option>
             </select>
-            <input type="date" name="dispatch_date" />
-            <input type="text" name="courier" placeholder="Courier Name" />
-            <input type="text" name="tracking_info" placeholder="Tracking ID" />
-            <button type="submit">Save Order</button>
-        </form>
-        <div id="orderFormMessage"></div>
-    </section>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Lead</th>
+                        <th>Status</th>
+                        <th>Dispatch Date</th>
+                        <th>Courier</th>
+                        <th>Tracking</th>
+                    </tr>
+                </thead>
+                <tbody id="orderTableBody"></tbody>
+            </table>
+        </section>
+    </div>
 
-    <section id="order-list" class="card hidden">
-        <h2>Orders List</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Lead</th>
-                    <th>Status</th>
-                    <th>Dispatch Date</th>
-                    <th>Courier</th>
-                    <th>Tracking</th>
-                </tr>
-            </thead>
-            <tbody id="orderTableBody"></tbody>
-        </table>
-    </section>
-
-    <section id="order-kanban" class="card hidden">
-        <h2>Order Kanban</h2>
-        <div id="orderKanbanBoard" class="kanban-board"></div>
-    </section>
+    <!-- Kanban View -->
+    <div class="center-container">
+        <section id="order-kanban" class="card hidden">
+            <h2>Order Kanban</h2>
+            <div id="orderKanbanBoard" class="kanban-board"></div>
+        </section>
+    </div>
 
     <script src="orders.js"></script>
 </body>

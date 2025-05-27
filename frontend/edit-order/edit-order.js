@@ -5,9 +5,9 @@ const orderId = params.get('id');
 let originalOrder = {};
 
 async function loadOrder() {
-    const res = await fetch(`${ORDER_API}?id=${orderId}`); // Corrected from `${API}/${orderId}`
+    const res = await fetch(`${ORDER_API}?id=${orderId}`);
     const orders = await res.json();
-    originalOrder = orders[0]; // because result is an array
+    originalOrder = orders[0];
 
     const form = document.getElementById('orderEditForm');
     for (const key in originalOrder) {

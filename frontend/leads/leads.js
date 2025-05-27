@@ -27,13 +27,10 @@ document.getElementById('leadForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const form = e.target;
     const data = Object.fromEntries(new FormData(form).entries());
-
-    // Basic validation
     if (!data.name || !data.contact || !data.stage) {
         document.getElementById('formMessage').textContent = "Please fill all required fields.";
         return;
     }
-
     try {
         const res = await fetch(API, {
             method: 'POST',
@@ -69,9 +66,9 @@ async function loadLeadsTable(stage = '') {
       <td>${lead.contact}</td>
       <td>${lead.company || '-'}</td>
       <td>${lead.stage}</td>
-      <td>${lead.follow_up_date || '-'}</td>
+      <td>${new Date(lead.follow_up_date).toLocaleDateString() || '-'}</td>
       <td>${new Date(lead.created_at).toLocaleDateString()}</td>
-      <td><button onclick="editLead(${lead.id})">✏️</button></td>
+      <td><button onclick="editLead(${lead.id})"><i class="fa-solid fa-pen-to-square"></i></button></td>
     `;
         tbody.appendChild(row);
     });
