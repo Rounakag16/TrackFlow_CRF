@@ -1,4 +1,4 @@
-const API = 'http://localhost:3000/api/dashboard';
+const API = 'https://trackflow-crf.onrender.com/api/dashboard';
 
 async function renderFollowUpCalendar(events) {
     const calendarEl = document.getElementById('calendar');

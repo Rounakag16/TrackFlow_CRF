@@ -1,5 +1,5 @@
-const ORDER_API = 'http://localhost:3000/api/orders';
-const LEAD_API = 'http://localhost:3000/api/leads';
+const ORDER_API = 'https://trackflow-crf.onrender.com/api/orders';
+const LEAD_API = 'https://trackflow-crf.onrender.com/api/leads';
 
 function hideAllSections() {
     document.getElementById('order-form-section').classList.add('hidden');
